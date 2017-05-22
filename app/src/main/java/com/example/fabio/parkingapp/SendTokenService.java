@@ -2,17 +2,12 @@ package com.example.fabio.parkingapp;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.apache.http.HttpClientConnection;
 import org.apache.http.NameValuePair;
-import org.apache.http.impl.DefaultHttpClientConnection;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
