@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "173010291240",
+    "firebase_url": "https://appparking-e138f.firebaseio.com",
+    "project_id": "appparking-e138f",
+    "storage_bucket": "appparking-e138f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173010291240:android:b1880df691917523",
+        "android_client_info": {
+          "package_name": "com.example.fabio.appparking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173010291240-9e4hf73bud109med2bups455ct8bu6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqMBNpI9RPjZKsyQzzht6sAUs23Ia-l9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173010291240:android:2c6b86413913a35a",
+        "android_client_info": {
+          "package_name": "com.example.fabio.parkingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173010291240-9e4hf73bud109med2bups455ct8bu6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqMBNpI9RPjZKsyQzzht6sAUs23Ia-l9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
