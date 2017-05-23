@@ -34,13 +34,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
         }
 
-//        MainActivity.mainActivity.updateMap("oi", "oi", "oi", "oi", "oi", "oi", "oi", "oi", "oi", "oi", "oi", "oi");
-
         //verificar se a mensagem tem uma notificacao
         if (remoteMessage.getNotification() != null) {
 
             String click_action = remoteMessage.getNotification().getClickAction();
-//            MainActivity.mainActivity.ToastNotify(remoteMessage.getNotification().getBody());
             sendNotification(remoteMessage.getNotification().getBody(), remoteMessage.getNotification().getTitle(), click_action);
 
             String teste = remoteMessage.getNotification().getBody();
@@ -71,40 +68,40 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void montarMapa(String vaga, String texto){
         switch (vaga) {
             case "vaga1":
-                MainActivity.mainActivity.popularMapa(R.id.vaga1, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga1, "Vaga #1:" + "\n" + texto);
                 break;
             case "vaga2":
-                MainActivity.mainActivity.popularMapa(R.id.vaga2, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga2, "Vaga #2:" + "\n" + texto);
                 break;
             case "vaga3":
-                MainActivity.mainActivity.popularMapa(R.id.vaga3, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga3, "Vaga #3:" + "\n" + texto);
                 break;
             case "vaga4":
-                MainActivity.mainActivity.popularMapa(R.id.vaga4, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga4, "Vaga #4:" + "\n" + texto);
                 break;
             case "vaga5":
-                MainActivity.mainActivity.popularMapa(R.id.vaga5, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga5, "Vaga #5:" + "\n" + texto);
                 break;
             case "vaga6":
-                MainActivity.mainActivity.popularMapa(R.id.vaga6, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga6, "Vaga #6:" + "\n" + texto);
                 break;
             case "vaga7":
-                MainActivity.mainActivity.popularMapa(R.id.vaga7, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga7, "Vaga #7:" + "\n" + texto);
                 break;
             case "vaga8":
-                MainActivity.mainActivity.popularMapa(R.id.vaga8, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga8, "Vaga #8:" + "\n" + texto);
                 break;
             case "vaga9":
-                MainActivity.mainActivity.popularMapa(R.id.vaga9, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga9, "Vaga #9:" + "\n" + texto);
                 break;
             case "vaga10":
-                MainActivity.mainActivity.popularMapa(R.id.vaga10, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga10, "Vaga #10:" + "\n" + texto);
                 break;
             case "vaga11":
-                MainActivity.mainActivity.popularMapa(R.id.vaga11, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga11, "Vaga #11:" + "\n" + texto);
                 break;
             case "vaga12":
-                MainActivity.mainActivity.popularMapa(R.id.vaga12, texto);
+                MainActivity.mainActivity.popularMapa(R.id.vaga12, "Vaga #12:" + "\n" + texto);
                 break;
             default:
                 MainActivity.mainActivity.ToastNotify("Sem valor!");
