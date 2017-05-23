@@ -40,8 +40,6 @@ public class SendTokenService extends IntentService {
         Log.d(TAG, "FCM Registration Token: " + FCM_token);
         String resposta = enviarDadosUsuario(FCM_token, "teste");
         Log.d(TAG, "Resposta: " + resposta);
-
-
     }
 
     public String enviarDadosUsuario(String token, String rfid){
