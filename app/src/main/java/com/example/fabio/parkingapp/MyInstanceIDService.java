@@ -1,7 +1,6 @@
 package com.example.fabio.parkingapp;
 
 import android.content.Intent;
-import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
