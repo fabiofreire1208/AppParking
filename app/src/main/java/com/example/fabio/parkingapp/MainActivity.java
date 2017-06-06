@@ -1,9 +1,14 @@
 package com.example.fabio.parkingapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private HashMap<String, String> estacionamento = new HashMap<>();
+    private Button enviarDados;
+    private EditText rfid;
+    private SharedPreferences myPrefs;
+    private static final String CONFIGURACAO_VAGA = "configurqacao_vaga";
+    private static final String VAGA_DESTINADA = "vaga";
 
 
     @Override
@@ -28,12 +38,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mainActivity = this;
+        myPrefs = this.getSharedPreferences(CONFIGURACAO_VAGA, Context.MODE_PRIVATE);
 
-        if (checkPlayServices()) {
-            FirebaseMessaging.getInstance().subscribeToTopic("vagas");
-            Intent intent = new Intent(this, SendTokenService.class);
-            startService(intent);
-        }
+        enviarDados = (Button) findViewById(R.id.enviar_dados);
+        rfid = (EditText) findViewById(R.id.rfid);
+
+        enviarDados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkPlayServices()) {
+                    FirebaseMessaging.getInstance().subscribeToTopic("vagas");
+                    Intent intent = new Intent(getApplicationContext(), SendTokenService.class);
+                    intent.putExtra("rfid", rfid.getText().toString());
+                    startService(intent);
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -77,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Toast.makeText(MainActivity.this, notificationMessage, Toast.LENGTH_LONG).show();
-                TextView mensagem = (TextView) findViewById(R.id.mensagem_received);
+                TextView mensagem = (TextView) findViewById(R.id.vaga_destinada_numero);
                 mensagem.setText(notificationMessage);
             }
         });
@@ -93,10 +115,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void dadosEnviados() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, "Os Dados do seu carro foram enviados corretamente!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         estacionamento = (HashMap<String, String>) MapaHelper.recuperarMapa();
         MapaHelper.processarMapa(estacionamento);
+        TextView mensagem = (TextView) findViewById(R.id.vaga_destinada_numero);
+        mensagem.setText(myPrefs.getString(VAGA_DESTINADA, null));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        TextView mensagem = (TextView) findViewById(R.id.vaga_destinada_numero);
+
+        SharedPreferences.Editor prefsEditor = myPrefs.edit();
+        prefsEditor.putString(VAGA_DESTINADA, mensagem.getText().toString());
+        prefsEditor.commit();
+
     }
 }

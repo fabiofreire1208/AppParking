@@ -2,7 +2,9 @@ package com.example.fabio.parkingapp;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -29,16 +31,24 @@ public class SendTokenService extends IntentService {
 
     public static final String URL_BASE = "http://ioteam.azurewebsites.net/parkingapp/services/vagas/associarDevice";
     private static final String TAG = "SendTokenService";
+    private String rfid;
 
     public SendTokenService(){
         super(TAG);
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        rfid =  intent.getExtras().getString("rfid");
+        return super.onStartCommand(intent, flags, startId);
+
+    }
+
+    @Override
     protected void onHandleIntent(Intent intent) {
         String FCM_token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "FCM Registration Token: " + FCM_token);
-        String resposta = enviarDadosUsuario(FCM_token, "teste");
+        String resposta = enviarDadosUsuario(FCM_token, rfid);
         Log.d(TAG, "Resposta: " + resposta);
     }
 
@@ -67,6 +77,8 @@ public class SendTokenService extends IntentService {
 
             int responseCode=httpURLConnection.getResponseCode();
             responseResult = responseCode == HttpsURLConnection.HTTP_OK ? "Os dados foram enviados corretamente" : "Falha ao enviar os dados";
+            if(responseCode == HttpsURLConnection.HTTP_OK)
+                MainActivity.mainActivity.dadosEnviados();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
